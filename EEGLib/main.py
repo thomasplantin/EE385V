@@ -15,6 +15,7 @@ from EEG import EEG
 import numpy as np
 import matplotlib.pyplot as plt
 from Feature.STFTFeature import STFTFeature
+from configparser import ConfigParser
 
 channel_names_spellers = {
     'eeg:1': 'Fz',
@@ -35,7 +36,10 @@ channel_names_spellers = {
     'eeg:16': 'CP4'
 }
 
-root = '/home/amcelroy/Code/EE385V/ErrPSpeller'
+# Read the appropriate root from the config file.
+parsing = ConfigParser()
+parsing.read('config.ini')
+root = parsing['DATA']['root']
 
 dsl = DatasetLoader(root)
 
